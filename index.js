@@ -1,13 +1,12 @@
 /**
  * @typedef Item
- * @property {number} id - this item's ID
- * @property {string} name - name of this item
- * @property {number} price - price of this item
- * @property {string} category - the food group this item belongs to
- * @property {number} quantity - number of this item in inventory
+ * @property {number} id
+ * @property {string} name
+ * @property {number} price
+ * @property {string} category
+ * @property {number} quantity
  */
 
-/** @type {Item[]} */
 const inventory = [
   { id: 1, name: "apple", price: 1.75, category: "fruit", quantity: 100 },
   { id: 2, name: "banana", price: 0.25, category: "fruit", quantity: 137 },
@@ -19,68 +18,51 @@ const inventory = [
   { id: 8, name: "sourdough", price: 5.5, category: "grains", quantity: 81 },
 ];
 
-// === Complete the functions below! ===
-
-/**
- * Prints out the name of each item in the given array.
- * @param {Item[]} items - array of items
- */
 function logNames(items) {
-  // TODO: use `forEach`
+  items.forEach(function (item) {
+    console.log(item.name);
+  });
 }
 
-/**
- * @param {Item[]} items - array of items
- * @returns {string[]} an array of item names in all uppercase
- */
 function getUppercaseNames(items) {
-  // TODO: use `map`
+  return items.map(function (item) {
+    return item.name.toUpperCase();
+  });
 }
 
-/**
- * @param {Item[]} items - array of items
- * @param {number} id - id of the item to find
- * @returns {Item} - the item in `items` with the given `id`
- */
 function getItemById(items, id) {
-  // TODO: use `find`
+  return items.find(function (item) {
+    return item.id === id;
+  });
 }
 
-/**
- * @param {Item[]} items - array of items
- * @param {string} name - name of the item to find
- * @returns {number} the price of the item named `name` if found
- */
 function getItemPriceByName(items, name) {
-  // TODO: use a loop!
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].name === name) {
+      return items[i].price;
+    }
+  }
+  return null;
 }
 
-/**
- * @param {Item[]} items - array of items
- * @param {string} category
- * @returns {Item[]} array of items that belong to the given `category`
- */
 function getItemsByCategory(items, category) {
-  // TODO: use `filter`
+  return items.filter(function (item) {
+    return item.category === category;
+  });
 }
 
-/**
- * @param {Item[]} items - array of items
- * @returns {number} the total quantity of all items
- */
 function countItems(items) {
-  // TODO: use `reduce`
+  return items.reduce(function (total, item) {
+    return total + item.quantity;
+  }, 0);
 }
 
-/**
- * @param {Item[]} items - array of items
- * @returns {number} the cost of all given items
- */
 function getTotalPrice(items) {
-  // TODO: use `reduce`
+  return items.reduce(function (sum, item) {
+    return sum + item.price * item.quantity;
+  }, 0);
 }
 
-// === READ BUT DO NOT CHANGE THE CODE BELOW ===
 
 console.log("Welcome! We carry the following items:");
 logNames(inventory);
